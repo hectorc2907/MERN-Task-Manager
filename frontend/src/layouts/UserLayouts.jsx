@@ -1,9 +1,17 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const UserLayouts = () => {
-  return (
-    <div>UserLayouts</div>
-  )
-}
+  const user = useSelector((state) => state.Auth.user);
+  const navigate = useNavigate("");
 
-export default UserLayouts
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
+  return <Outlet />;
+};
+
+export default UserLayouts;
