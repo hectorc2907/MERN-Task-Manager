@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
+import Header from "./components/Header.jsx";
 
 const App = () => {
   const user = useSelector((state) => state.Auth.user);
