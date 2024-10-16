@@ -7,7 +7,7 @@ export const userRegister = async (req, res) => {
     //solicitamos al body los datos
     const { name, email, password } = req.body;
     //la imagen se estable en nulo ya que no es necesaria en el registro
-    let image = null;
+    let profileImage = null;
 
     //verificamos si el email ya esta registrado, en caso de que si finalizamos con un mensaje
     const existUser = await UserModel.findOne({ email });
@@ -25,7 +25,7 @@ export const userRegister = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      image,
+      profileImage,
     });
 
     //guardamos el usuario en la base datos
