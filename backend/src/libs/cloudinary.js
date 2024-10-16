@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import { API_KEY, API_SECRET, CLOUD_NAME } from "../config.js";
+import { API_KEY, API_SECRET, CLOUD_NAME } from "../utils/envConfig.js";
 
 cloudinary.config({
   cloud_name: CLOUD_NAME,
@@ -12,3 +12,7 @@ export const uploadImage = async (filePath) => {
     folder: "profileImage",
   });
 };
+
+export const deleteImage = async(id) => {
+  return await cloudinary.uploader.destroy(id)
+}

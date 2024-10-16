@@ -30,7 +30,7 @@ const Header = () => {
               {user.profileImage === null ? (
                 <FaUserCircle className="w-16 h-16" />
               ) : (
-                <image src={user.profileImage.url} className="w-16 h-16" />
+                <img src={user.profileImage.url} className="w-16 h-16 rounded-full" />
               )}
               {user.role === "admin" ? (
                 <div className="flex gap-5">
