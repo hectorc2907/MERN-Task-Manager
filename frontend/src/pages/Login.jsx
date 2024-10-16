@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { post } from "../services/authServices.js";
+import { toast } from "react-hot-toast";
 import { SetUser } from "../redux/AuthSlice.js";
 
 const Login = () => {
@@ -18,6 +19,7 @@ const Login = () => {
       if (request.status === 200) {
         if (response.user) {
           navigate("/");
+          toast.success(`Bienvenido ${response.user.name}`);
         }
         dispatch(SetUser(response.user));
       }
