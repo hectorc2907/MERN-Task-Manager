@@ -1,7 +1,7 @@
-import { createSlice, createAyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { get } from "../services/authServices.js";
 
-export const updateUser = createAyncThunk("updateUser", async () => {
+export const updateUser = createAsyncThunk("updateUser", async () => {
   try {
     const request = await get("/api/auth/user-check");
     const response = request.data.user;
