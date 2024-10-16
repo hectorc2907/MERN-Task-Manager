@@ -1,1 +1,5 @@
-console.log("Server on port:4000");
+import { connectDB } from "./utils/db.js";
+import { PORT } from "./utils/config.js";
+
+connectDB();
+console.log("Server on port:", PORT);
