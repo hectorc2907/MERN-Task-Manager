@@ -22,35 +22,55 @@ const Header = () => {
     }
   };
   return (
-    <header className="flex justify-center">
-      <div className="container">
-        <div className="flex justify-between">
+    <header className="flex justify-center bg-blue-900 text-white">
+      <div className="container py-5">
+        <div className="flex justify-between items-center">
           {user ? (
             <>
               {user.profileImage === null ? (
-                <FaUserCircle />
+                <FaUserCircle className="w-16 h-16" />
               ) : (
-                <image src={user.profileImage.url} />
+                <image src={user.profileImage.url} className="w-16 h-16" />
               )}
               {user.role === "admin" ? (
-                <div>
-                  <Link to="/">New Task</Link>
-                  <Link to="/admin">Admin</Link>
-                  <button onClick={handleLogout}>Logout</button>
+                <div className="flex gap-5">
+                  <Link className="hover:text-slate-300" to="/">
+                    New Task
+                  </Link>
+                  <Link className="hover:text-slate-300" to="/admin">
+                    Admin
+                  </Link>
+                  <button
+                    className="hover:text-slate-300"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </div>
               ) : (
-                <div>
-                  <Link>New Task</Link>
-                  <button onClick={handleLogout}>Logout</button>
+                <div className="flex gap-5">
+                  <Link className="hover:text-slate-300" to="/">
+                    New Task
+                  </Link>
+                  <button
+                    className="hover:text-slate-300"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </div>
               )}
             </>
           ) : (
             <>
-              <h1>Tasks</h1>
-              <div>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Registro</Link>
+              <h1 className="text-5xl font-semibold italic py-2">Tasks</h1>
+              <div className="flex gap-5">
+                <Link to="/login" className="hover:text-slate-300">
+                  Login
+                </Link>
+                <Link to="/register" className="hover:text-slate-300">
+                  Registro
+                </Link>
               </div>
             </>
           )}
