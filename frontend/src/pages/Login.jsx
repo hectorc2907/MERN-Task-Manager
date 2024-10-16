@@ -33,26 +33,22 @@ const Login = () => {
         <h2 className="flex justify-center my-10 text-4xl">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col items-center my-5">
-            <label htmlFor="email" className="">
-              Email
-            </label>
+            <label htmlFor="email">Correo Electronico</label>
             <input
               type="text"
               id="email"
-              placeholder="Correo Electronico"
+              placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full border border-slate-300 rounded-md px-2"
             />
           </div>
           <div className="flex flex-col items-center my-5">
-            <label htmlFor="password" className="">
-              Password
-            </label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"
-              placeholder="password"
+              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full border border-slate-300 rounded-md px-2"
