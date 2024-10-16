@@ -1,5 +1,7 @@
 import UserModel from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../utils/envConfig.js";
 
 //controlador de registro
 export const userRegister = async (req, res) => {
@@ -42,6 +44,49 @@ export const userRegister = async (req, res) => {
       message: "User registered successfully",
       user,
     });
+  } catch (error) {
+    //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, try again" });
+  }
+};
+
+export const userLogin = async (req, res) => {
+  try {
+    //solicitamos al body los datos
+    const { email, password } = req.body;
+
+    //verificamos si el correo existe en la base de datos, en caso de que no, enviamos un mensaje de credenciales invalidas con un estado 404 not found
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    //en caso de que si exista el correo comparamos la contraseña provista con la encriptada, si no son las mismas enviamos un estado 401 Unauthorized, con el mismo mensaje de error
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    //si todo lo anterior sale bien procedemos a crear el token
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+
+    //configuramos el token dentro de las cookies
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 3 * 60 * 60 * 1000,
+    });
+
+    //devolvemos el mensaje de login correcto
+    return res
+      .status(200)
+      .json({ success: true, message: "Login Successfully" });
   } catch (error) {
     //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
     return res
