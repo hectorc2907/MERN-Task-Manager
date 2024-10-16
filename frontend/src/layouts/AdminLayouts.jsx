@@ -1,9 +1,17 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const AdminLayouts = () => {
-  return (
-    <div>AdminLayouts</div>
-  )
-}
+  const user = useSelector((state) => state.Auth.user);
+  const navigate = useNavigate();
 
-export default AdminLayouts
+  useEffect(() => {
+    if (!user || user.role !== "admin") {
+      navigate("/login");
+    }
+  }, [user]);
+  return <Outlet />;
+};
+
+export default AdminLayouts;
