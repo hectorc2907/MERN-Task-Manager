@@ -112,3 +112,22 @@ export const userLogout = async (req, res) => {
       .json({ success: false, message: "Something went wrong, try again" });
   }
 };
+
+//controlador que verifica el usuario
+export const userCheck = async (req, res) => {
+  try {
+    //recuperamos los datos del usuario del req.user en caso de que no exista devuelve un mensaje 404 no encontrado
+    const user = req.user;
+    if (!user) {
+      return res.status(404).json({ succes: false, message: "User not found" });
+    }
+
+    //en caso de encontrar al usuario devolvemos una respuesta positiva
+    return res.status(200).json(user);
+  } catch (error) {
+    //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, try again" });
+  }
+};
