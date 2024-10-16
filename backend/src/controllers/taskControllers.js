@@ -50,3 +50,17 @@ export const getMyTasks = async (req, res) => {
       .json({ success: false, message: "Something went wrong, try again" });
   }
 };
+
+export const getAllTasks = async (req, res) => {
+  try {
+    // Buscamos todas las tareas
+    const tasks = await TasksModel.find();
+    // Enviamos una respuesta exitosa con las tareas obtenidas
+    return res.status(200).json({ success: true, tasks });
+  } catch (error) {
+    // En caso de error, devolvemos un estado 500 con un mensaje de error
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, try again" });
+  }
+};
