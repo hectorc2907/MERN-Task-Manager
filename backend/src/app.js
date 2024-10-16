@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { FRONTEND_URL } from "./utils/envConfig.js";
 import AuthRoutes from "./routes/authRoutes.js";
+import TaskRoutes from "./routes/taskRoutes.js"
 
 //instancia de express
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 app.use("/api/auth", AuthRoutes);
+app.use("/api/task", TaskRoutes);
 
 //exportamos app para su uso
 export { app };
