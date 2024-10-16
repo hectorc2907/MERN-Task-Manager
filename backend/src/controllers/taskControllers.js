@@ -31,3 +31,22 @@ export const createTask = async (req, res) => {
       .json({ success: false, message: "Something went wrong, try again" });
   }
 };
+
+// Controlador para obtener las tareas del usuario autenticado
+export const getMyTasks = async (req, res) => {
+  try {
+    // Obtenemos el usuario autenticado de la solicitud
+    const user = req.user;
+
+    // Buscamos todas las tareas asociadas al usuario utilizando su ID
+    const tasks = await TasksModel.find({ userId: user._id });
+
+    // Enviamos una respuesta exitosa con las tareas obtenidas
+    return res.status(200).json({ success: true, tasks });
+  } catch (error) {
+    // En caso de error, devolvemos un estado 500 con un mensaje de error
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, try again" });
+  }
+};
