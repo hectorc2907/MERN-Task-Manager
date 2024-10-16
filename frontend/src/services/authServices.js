@@ -1,7 +1,7 @@
 import { instance } from "./axios.js";
 
-export const get = (url, params) => instance.get(url, { params });
 export const post = (url, data) => instance.post(url, data);
+export const get = (url, params) => instance.get(url, { params });
 
 instance.interceptors.request.use(
   function (config) {
