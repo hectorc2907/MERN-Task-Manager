@@ -24,7 +24,7 @@ export const createTask = async (req, res) => {
     await task.save();
 
     // Enviamos una respuesta exitosa indicando que la tarea fue agregada
-    return res.status(200).json({ success: true, message: "Task add" });
+    return res.status(200).json({ success: true, message: "Task add", task });
   } catch (error) {
     // En caso de error, devolvemos un estado 500 con un mensaje de error
     return res
