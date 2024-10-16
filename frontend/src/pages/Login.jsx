@@ -28,37 +28,53 @@ const Login = () => {
     }
   };
   return (
-    <>
-      <div>
-        <h2>Login</h2>
+    <div className="flex justify-center items-center p-10">
+      <div className="p-10 border border-slate-300 rounded-xl shadow-lg">
+        <h2 className="flex justify-center my-10 text-4xl">Login</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
+          <div className="flex flex-col items-center my-5">
+            <label htmlFor="email" className="">
+              Email
+            </label>
             <input
               type="text"
               id="email"
-              placeholder="email"
+              placeholder="Correo Electronico"
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full border border-slate-300 rounded-md px-2"
             />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
+          <div className="flex flex-col items-center my-5">
+            <label htmlFor="password" className="">
+              Password
+            </label>
             <input
               type="password"
               id="password"
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="w-full border border-slate-300 rounded-md px-2"
             />
           </div>
-          <button type="submit">Login</button>
+          <div className="flex justify-center my-5">
+            <button
+              type="submit"
+              className="bg-blue-800 hover:bg-blue-700 text-white pointer px-8 py-3 rounded-xl"
+            >
+              Login
+            </button>
+          </div>
           <p className="register-link">
-            Not registered? <Link to={"/register"}>Register here</Link>
+            Not registered?{" "}
+            <Link to={"/register"} className="text-green-700 font-semibold">
+              Register here
+            </Link>
           </p>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
