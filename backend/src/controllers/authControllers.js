@@ -87,7 +87,7 @@ export const userLogin = async (req, res) => {
     //devolvemos el mensaje de login correcto
     return res
       .status(200)
-      .json({ success: true, message: "Login successfully" });
+      .json({ success: true, message: "Login successfully", user });
   } catch (error) {
     //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
     return res
