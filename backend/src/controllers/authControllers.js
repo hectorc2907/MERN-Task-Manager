@@ -87,7 +87,24 @@ export const userLogin = async (req, res) => {
     //devolvemos el mensaje de login correcto
     return res
       .status(200)
-      .json({ success: true, message: "Login Successfully" });
+      .json({ success: true, message: "Login successfully" });
+  } catch (error) {
+    //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, try again" });
+  }
+};
+
+//controlador de logout
+export const userLogout = async (req, res) => {
+  try {
+    //ejecutamos la limpiezas de las cookies con el nombre token
+    res.clearCookie("token");
+    //devolvemos el mensaje de logout correcto
+    return res
+      .status(200)
+      .json({ succes: true, message: "Logout successfully" });
   } catch (error) {
     //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
     return res
