@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { post } from "../services/authServices.js";
 import { SetUser } from "../redux/AuthSlice.js";
 
@@ -52,6 +52,11 @@ const Login = () => {
             />
           </div>
           <button type="submit">Login</button>
+          <p className="register-link">
+            {/* Enlace para redirigir a la página de registro */}
+            Not registered? <Link to={"/register"}>Register here</Link>
+            {/* Enlace a la página de registro */}
+          </p>
         </form>
       </div>
     </>
