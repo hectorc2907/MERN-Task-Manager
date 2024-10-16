@@ -52,6 +52,7 @@ export const userRegister = async (req, res) => {
   }
 };
 
+//controlador de login
 export const userLogin = async (req, res) => {
   try {
     //solicitamos al body los datos
