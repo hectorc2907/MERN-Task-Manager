@@ -123,7 +123,7 @@ export const userCheck = async (req, res) => {
     }
 
     //en caso de encontrar al usuario devolvemos una respuesta positiva
-    return res.status(200).json(user);
+    return res.status(200).json({ succes: true, user });
   } catch (error) {
     //en caso de que algo fallara nos devolvera el siguiente estado y mensaje
     return res
