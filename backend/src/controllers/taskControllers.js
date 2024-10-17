@@ -55,22 +55,22 @@ export const getMyTasks = async (req, res) => {
 // Controlador para obtener todas las tareas y agregar los nombres de los usuarios manualmente
 export const getAllTasks = async (req, res) => {
   try {
-    // 1. Obtenemos todas las tareas
+    // Obtenemos todas las tareas
     const tasks = await TasksModel.find();
 
-    // 2. Creamos un array de IDs únicos de usuarios de las tareas
+    // Creamos un array de IDs únicos de usuarios de las tareas
     const userIds = [...new Set(tasks.map((task) => task.userId))];
 
-    // 3. Buscamos los usuarios por sus IDs
+    // Buscamos los usuarios por sus IDs
     const users = await UserModel.find({ _id: { $in: userIds } });
 
-    // 4. Creamos un diccionario de usuarios por ID para fácil acceso
+    // Creamos un diccionario de usuarios por ID para fácil acceso
     const userMap = users.reduce((map, user) => {
       map[user._id] = user;
       return map;
     }, {});
 
-    // 5. Combinamos cada tarea con los datos del usuario correspondiente
+    // Combinamos cada tarea con los datos del usuario correspondiente
     const tasksWithUser = tasks.map((task) => ({
       ...task._doc, // Copia de los datos de la tarea
       user: userMap[task.userId]
@@ -78,7 +78,7 @@ export const getAllTasks = async (req, res) => {
         : "Usuario desconocido",
     }));
 
-    // 6. Enviamos la respuesta con las tareas combinadas con el nombre del usuario
+    // Enviamos la respuesta con las tareas combinadas con el nombre del usuario
     return res.status(200).json({ success: true, tasks: tasksWithUser });
   } catch (error) {
     // En caso de error, devolvemos un estado 500 con un mensaje de error

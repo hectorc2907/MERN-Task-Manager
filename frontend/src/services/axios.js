@@ -9,3 +9,11 @@ export const instance = axios.create({
   },
   withCredentials: true,
 });
+
+export const instanceImageProfile = axios.create({
+  baseURL: backendUrl,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+  withCredentials: true,
+});

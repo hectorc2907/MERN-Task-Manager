@@ -35,7 +35,7 @@ const Admin = () => {
   return (
     <div className="flex justify-center">
       <div className="container py-10">
-        <h1 className="text-center">Todas las tareas</h1>
+        <h1 className="mb-5 text-center text-2xl">Todas las tareas</h1>
         {tasks.length > 0 ? (
           <div className="grid grid-cols-3 gap-x-10 gap-y-5">
             {tasks.map((task) => (
